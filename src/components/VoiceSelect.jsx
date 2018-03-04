@@ -21,32 +21,31 @@ class VoiceSelect extends Component {
 	constructor(props){
 		super(props);
 		this.handleChange = this.handleChange.bind(this)
-		this.state = { selectedOption: null };
 	}
 	componentDidMount() {
 		const self = this;
 		dotabase.query("SELECT * FROM voices").then(response => {
 			self.setState({ options: 
 				sortVoices(response.rows).map(voice => ({
-					value: voice.id,
+					value: parseInt(voice.id),
 					label: voice.name,
 					icon: dotabase.vpk_path + voice.icon
 				}))
 			});
 		});
 	}
-	handleChange(option) {
-		this.setState({ selectedOption: option });
+	get name() {
+		return this.props.name || "voice"
+	}
+	handleChange(value) {
+		this.props.onChange(this.name, value && value.value);
 	}
 	render() {
-		const { selectedOption } = this.state;
-		const value = selectedOption && selectedOption.value;
-
 		return (
 			<Select
-				name="form-field-name"
+				name={this.name}
 				placeholder="Select a hero / announcer..."
-				value={value}
+				value={this.props.value}
 				onChange={this.handleChange}
 				optionComponent={SelectIconOption}
 				valueComponent={SelectIconValue}
