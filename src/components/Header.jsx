@@ -14,24 +14,23 @@ var trap2_style = {
 };
 
 var img_style = {
-	width: `66px`,
-	height: `66px`,
+	width: `64px`,
+	height: `64px`,
 	margin: `auto`,
 	position: `absolute`,
-	top: `47%`,
+	top: `48%`,
 	left: `50%`,
 	transition: `transform ${transition_time}s ${transition_time * 2}s ease`,
-	transform: `translate(-50%, -200%)`
+	transform: `translate(-50%, -150%)`
 };
 
-class Response extends Component {
+class Header extends Component {
 	componentDidMount() {
 		trap1_style.transform = "translateY(0)";
 		trap2_style.transform = "translateY(0)";
 		img_style.transform = "translate(-50%, -50%)";
 	}
 	render() {
-		var { response } = this.props;
 		return (
 			<div id="header">
 				<div id="logobox">
@@ -49,11 +48,11 @@ class Response extends Component {
 							</radialGradient>
 						</defs>
 					</svg>
-					<img style={img_style} src="images/dota.png" />
+					<img style={img_style} src="images/dota.svg" />
 				</div>
 			</div>
 		);
 	}
 }
 
-export default Response;
+export default Header;
