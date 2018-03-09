@@ -10,13 +10,14 @@
 }
 
 body {
+	margin: 0;
 	height: 100%;
 	background-color: var(--background-color);
 	color: var(--text-color);
 	font-family: "Roboto", sans-serif;
 }
 
-#header {
+#title {
 	text-align: center;
 }
 

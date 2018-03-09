@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import VoiceSelect from './VoiceSelect.jsx';
 import dotabase from '../Dotabase.js';
 import Response from './Response.jsx';
+import Header from './Header.jsx';
 import '../styles/responses.css';
 
 
@@ -75,7 +76,8 @@ class ResponsesPage extends Component {
 	render() {
 		return (
 			<div>
-				<div id={"header"}>
+				<Header />
+				<div id={"title"}>
 					<h1>
 						Dota 2 Voice Lines
 					</h1>
