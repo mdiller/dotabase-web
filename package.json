@@ -16,6 +16,7 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-select": "^1.2.1",
+    "react-sound": "^1.1.0",
     "style-loader": "^0.20.2",
     "webpack": "^3.5.5"
   },

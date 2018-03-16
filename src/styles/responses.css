@@ -18,7 +18,12 @@ div.soundtitle > span {
 	vertical-align: top;
 	display: inline-block;
 	display: -moz-inline-stack;
+	font-size: 17.5px;
 	position: relative;
+}
+
+div.soundtitle > span > img {
+	margin: 0 5px;
 }
 
 div.soundtitle > span > img,
@@ -32,11 +37,30 @@ div.soundtitle svg
 	position: relative;
 }
 
-.link-button {
-	height: 32px;
-	width: 32px;
+.speaker * {
+	user-select: none;
 }
 
+.link-button {
+	display: inline-block;
+	height: 32px;
+	width: 32px;
+	transition: all 0.5s ease;
+}
+
+.link-button:hover {
+	transform: rotate(360deg) scale(1.1);
+}
+
+.link-button > img {
+	display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+img {
+	vertical-align: middle;
+}
 
 
 

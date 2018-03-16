@@ -14,7 +14,8 @@ function cleanText(text) {
 }
 
 function createResponseQuery(vars) {
-	var query = "SELECT * FROM responses";
+	var fields = "r.name, r.mp3, r.text, r.text_simple, r.criteria, r.pretty_criteria, v.icon as voice_icon";
+	var query = `SELECT ${fields} FROM responses r JOIN voices v ON r.voice_id = v.id`;
 	var conditions = [ "text != ''" ];
 	if (vars.text != "") {
 		conditions.push(`text_simple like '% ${cleanText(vars.text)} %'`);

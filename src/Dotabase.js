@@ -5,6 +5,7 @@ class Dotabase {
 
 	// Executes a query and converts the result to json
 	query(query) {
+		console.log(`./dotabase.php?q=${query}`);
 		return fetch(`./dotabase.php?q=${query}`).then(response => {
 			return response.json();
 		});

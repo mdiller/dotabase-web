@@ -9,6 +9,10 @@
 	--navbar-end-color: #0F151A;
 }
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 	height: 100%;
