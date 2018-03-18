@@ -1,8 +1,20 @@
+h1 {
+	font-family: "Arial Black", Gadget, sans-serif;
+	color: black;
+	font-size: 64px;
+	font-weight: bold;
+	text-shadow: 0 0 5px black, 0 0 10px white;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
 
 #backgroundimage {
 	position: fixed;
 	top: 0;
-	left: 0;
 	width: 100%;
 	height: 100%;
 	z-index: -1;
@@ -12,4 +24,14 @@
 @keyframes fadein {
 	from { opacity: 0; }
 	to { opacity: 1; }
+}
+
+@media (orientation:portrait) {
+	#backgroundimage {
+		width: auto;
+		height: 100%;
+		margin: auto;
+		left: 50%;
+		transform: translateX(-50%);
+	}
 }
