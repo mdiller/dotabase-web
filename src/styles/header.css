@@ -12,7 +12,7 @@
 	transform: translate(-50%, 0);
 }
 
-#logobox img {
+#logo {
 	width: 64px;
 	height: 64px;
 	margin: auto;
@@ -21,6 +21,18 @@
 	left: 50%;
 	transform: translate(-50%, -150%);
 	animation: icongo 0.5s ease-out 1s 1 normal forwards;
+	transition: filter 0.5s;
+}
+
+stop {
+	transition: 0.5s ease;
+}
+
+#logo:hover #grad stop:first-child {
+	stop-color: #c1300c;
+}
+#logo:hover #grad stop:last-child {
+	stop-color: #ff2528;
 }
 
 #trap1 {
