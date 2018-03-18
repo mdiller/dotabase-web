@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import VoiceSelect from './VoiceSelect.jsx';
-import dotabase from '../Dotabase.js';
-import Response from './Response.jsx';
-import Header from './Header.jsx';
-import '../styles/responses.css';
+import VoiceSelect from '../VoiceSelect.jsx';
+import dotabase from '../../Dotabase.js';
+import Response from '../Response.jsx';
+import '../../styles/responses.css';
 
 
 function cleanText(text) {
@@ -77,7 +76,6 @@ class ResponsesPage extends Component {
 	render() {
 		return (
 			<div>
-				<Header />
 				<div id={"title"}>
 					<h1>
 						Dota 2 Voice Lines
