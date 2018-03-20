@@ -1,0 +1,18 @@
+
+#screensbox {
+	display: flex;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	justify-content: space-between;
+	max-width: 900px;
+	margin: auto;
+}
+
+#screensbox span {
+	flex-grow: 1;
+	flex-basis: 128px;
+	margin: 4px;
+}
+#screensbox img {
+	width: 100%;
+}

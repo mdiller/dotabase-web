@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
-import VoiceSelect from '../VoiceSelect.jsx';
+import HeroSelect from '../HeroSelect.jsx';
 import dotabase from '../../Dotabase.js';
-import Response from '../Response.jsx';
-import '../../styles/responses.css';
+import '../../styles/loadingscreens.css';
 
 
 function cleanText(text) {
 	text = text.trim();
-	text = text.toLowerCase();
+	// text = text.toLowerCase();
 	text = text.replace(/[^a-z0-9\s]/, '')
 	return text;
 }
 
-function createResponseQuery(vars) {
-	var fields = "r.name, r.mp3, r.text, r.text_simple, r.criteria, r.pretty_criteria, v.icon as voice_icon";
-	var query = `SELECT ${fields} FROM responses r JOIN voices v ON r.voice_id = v.id`;
-	var conditions = [ "text != ''" ];
+function createLoadingScreensQuery(vars) {
+	var query = `SELECT * FROM loadingscreens`;
+	var conditions = [];
 	if (vars.text != "") {
-		conditions.push(`text_simple like '% ${cleanText(vars.text)} %'`);
+		conditions.push(`name like '%${cleanText(vars.text)}%'`);
 	}
-	if (vars.voice != null) {
-		conditions.push(`voice_id == ${vars.voice}`);
+	if (vars.hero != null) {
+		conditions.push(`hero_id == ${vars.hero}`);
 	}
-	query += ` WHERE ${conditions.join(" AND ")}`;
+	if (conditions.length > 0){
+		query += ` WHERE ${conditions.join(" AND ")}`;
+	}
 
-	query += ` LIMIT 50`;
+	query += ` LIMIT 100`;
 	return query;
 }
 
@@ -33,18 +33,18 @@ class ResponsesPage extends Component {
 		super(props);
 		this.state = {
 			text: "",
-			voice: null,
-			responses: []
+			hero: null,
+			loadingscreens: []
 		};
 		this.timer_id = null;
 
-		this.updateResponses = this.updateResponses.bind(this);
+		this.updateScreens = this.updateScreens.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleChangeTarget = this.handleChangeTarget.bind(this);
 	}
 	componentDidMount() {
-		this.updateResponses();
+		this.updateScreens();
 	}
 	handleChange(key, value) {
 		this.setState({[key]: value});
@@ -59,26 +59,26 @@ class ResponsesPage extends Component {
 	}
 	onSubmit(event){
 		event.preventDefault();
-		this.updateResponses();
+		this.updateScreens();
 	}
-	updateResponses() {
+	updateScreens() {
 		const self = this;
-		dotabase.query(createResponseQuery(this.state)).then(response => {
+		dotabase.query(createLoadingScreensQuery(this.state)).then(response => {
 			console.log(response.query);
-			self.setState({ responses: response.rows })
+			self.setState({ loadingscreens: response.rows })
 		})
 	}
 	startDelayedUpdate() {
 		const self = this;
 		clearTimeout(this.timer_id);
-		this.timer_id = setTimeout(() => self.updateResponses(), 300);
+		this.timer_id = setTimeout(() => self.updateScreens(), 300);
 	}
 	render() {
 		return (
 			<div>
 				<div id={"title"}>
 					<h1>
-						Dota 2 Voice Lines
+						Loading Screens
 					</h1>
 				</div>
 				<form onSubmit={this.onSubmit}>
@@ -88,14 +88,18 @@ class ResponsesPage extends Component {
 							type="text"
 							value={this.state.text}
 							onChange={this.handleChangeTarget} />
-						<VoiceSelect
-							name="voice"
-							value={this.state.voice}
+						<HeroSelect
+							name="hero"
+							value={this.state.hero}
 							onChange={this.handleChange} />
 					</fieldset>
 				</form>
-				<div>
-					{this.state.responses.map(response => (<Response key={response.fullname} response={response}/>))}
+				<div id="screensbox">
+					{this.state.loadingscreens.map(screen => (
+						<span key={screen.id}>
+							<img src={dotabase.vpk_path + screen.thumbnail} />
+						</span>
+					))}
 				</div>
 			</div>
 		);

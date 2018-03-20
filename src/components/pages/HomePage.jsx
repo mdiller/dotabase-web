@@ -19,7 +19,7 @@ class HomePage extends Component {
 	render() {
 		return (
 			<div>
-				<div id={"title"}>
+				<div id={"maintitle"}>
 					<h1>
 						Dotabase
 					</h1>
