@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import VoiceSelect from '../VoiceSelect.jsx';
 import dotabase from '../../Dotabase.js';
+import LoadingScreen from '../LoadingScreen.jsx';
 import '../../styles/homepage.css';
 
 class HomePage extends Component {
@@ -24,9 +25,9 @@ class HomePage extends Component {
 						Dotabase
 					</h1>
 				</div>
-				<img 
-					id="backgroundimage" 
-					src={this.state.loadingscreen ? dotabase.vpk_path + this.state.loadingscreen.image : ""} />
+				{this.state.loadingscreen ? (
+					<LoadingScreen screen={this.state.loadingscreen} />
+				) : null}
 			</div>
 		);
 	}

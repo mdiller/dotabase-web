@@ -16,7 +16,7 @@
 	text-align: center;
 }
 
-#backgroundimage {
+.loadingscreen-box img {
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -31,11 +31,15 @@
 }
 
 @media (orientation:portrait) {
-	#backgroundimage {
-		width: auto;
+	.loadingscreen-box img {
+		width: auto !important;
 		height: 100%;
 		margin: auto;
-		left: 50%;
+		left: 50% !important;
 		transform: translateX(-50%);
+	}
+
+	body {
+		overflow-x: hidden;
 	}
 }

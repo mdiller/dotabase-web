@@ -19,28 +19,52 @@
 	cursor: pointer;
 }
 
-@media only screen and (max-width: 768px) {
-	#screensbox span {
-		min-width: 112px;
-	}
-}
-
 #selectedscreen {
 	position: fixed;
 	left: 0;
 	top: 0;
-	padding: 2.5%;
 	width: 100%;
 	height: 100%;
-	animation: fadein 1s ease-out;
+	background: rgba(0, 0, 0, 0.5);
 }
 
-#selectedscreen img {
-	width: 100%;
-	height: 100%;
+#selectedscreen svg {
+	position: absolute;
+	opacity: 0.5;
+	width: 64px;
+	height: 64px;
+	cursor: pointer;
+	transition: opacity 0.5s;
+	filter: drop-shadow(0 0 5px #ffffff);
 }
 
-@keyframes fadein {
-	from { opacity: 0; }
-	to { opacity: 1; }
+#selectedscreen svg:hover {
+	opacity: 1.0;
+}
+
+#arrowright {
+	right: 25px;
+	top: 50%;
+	transform: translateY(-50%) rotate(-90deg);
+}
+
+#arrowleft {
+	left: 25px;
+	top: 50%;
+	transform: translateY(-50%) rotate(90deg);
+}
+
+#closebutton {
+	top: 25px;
+	right: 25px;
+}
+
+@media only screen and (max-width: 768px) {
+	#screensbox span {
+		min-width: 112px;
+	}
+
+	#selectedscreen {
+		padding: 0;
+	}
 }

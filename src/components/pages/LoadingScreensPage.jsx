@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HeroSelect from '../HeroSelect.jsx';
+import LoadingScreen from '../LoadingScreen.jsx';
 import dotabase from '../../Dotabase.js';
 import '../../styles/loadingscreens.css';
 
@@ -36,7 +37,8 @@ class ResponsesPage extends Component {
 			text: "",
 			hero: null,
 			loadingscreens: [],
-			selectedscreen: null
+			selected_screen: null,
+			selected_screen_index: null
 		};
 		this.timer_id = null;
 
@@ -44,6 +46,18 @@ class ResponsesPage extends Component {
 		this.onSubmit = this.onSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleChangeTarget = this.handleChangeTarget.bind(this);
+	}
+	get nextScreen() {
+		// The screen to the right of this one
+		if(!this.state.selected_screen || this.state.selected_screen_index + 1 >= this.state.loadingscreens.length)
+			return null;
+		return this.state.loadingscreens[this.state.selected_screen_index + 1];
+	}
+	get previousScreen() {
+		// The screen to the left of this one
+		if(!this.state.selected_screen || this.state.selected_screen_index - 1 < 0)
+			return null;
+		return this.state.loadingscreens[this.state.selected_screen_index - 1];
 	}
 	componentDidMount() {
 		this.updateScreens();
@@ -76,7 +90,10 @@ class ResponsesPage extends Component {
 		this.timer_id = setTimeout(() => self.updateScreens(), 300);
 	}
 	selectScreen(screen) {
-		this.setState({ selectedscreen: screen })
+		this.setState({ 
+			selected_screen: screen,
+			selected_screen_index: screen ? this.state.loadingscreens.indexOf(screen) : null
+		})
 	}
 	render() {
 		return (
@@ -107,9 +124,22 @@ class ResponsesPage extends Component {
 					))}
 				</div>
 				{
-					this.state.selectedscreen ? (
-						<span id="selectedscreen" onClick={() => this.selectScreen(null)}>
-							<img src={dotabase.vpk_path + this.state.selectedscreen.image} />
+					this.state.selected_screen ? (
+						<span id="selectedscreen">
+							<LoadingScreen screen={this.state.selected_screen} />
+							{this.previousScreen ? (
+								<svg id="arrowleft" viewBox="0 0 1000 1000" onClick={() => this.selectScreen(this.previousScreen)}>
+									<path d="M965.1 360.2l-400 401c-17.9 17.9-41.7 25.4-65.2 24-23.4 1.4-47.2-6.1-65.1-24l-400-401c-33.2-33.3-33.2-87.4 0-120.7s87.1-33.3 120.4 0L500 585.2l344.8-345.7c33.2-33.3 87.1-33.3 120.4 0s33.1 87.4-.1 120.7z"/>
+								</svg>
+							) : null}
+							{this.nextScreen ? (
+								<svg id="arrowright" viewBox="0 0 1000 1000" onClick={() => this.selectScreen(this.nextScreen)}>
+									<path d="M965.1 360.2l-400 401c-17.9 17.9-41.7 25.4-65.2 24-23.4 1.4-47.2-6.1-65.1-24l-400-401c-33.2-33.3-33.2-87.4 0-120.7s87.1-33.3 120.4 0L500 585.2l344.8-345.7c33.2-33.3 87.1-33.3 120.4 0s33.1 87.4-.1 120.7z"/>
+								</svg>
+							) : null}
+							<svg id="closebutton" viewBox="0 0 96 96" onClick={() => this.selectScreen(null)}>
+								<path d="M96 14L82 0 48 34 14 0 0 14l34 34L0 82l14 14 34-34 34 34 14-14-34-34z"/>
+							</svg>
 						</span>
 					) : null
 				}
