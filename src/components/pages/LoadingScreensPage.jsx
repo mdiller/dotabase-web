@@ -6,7 +6,7 @@ import '../../styles/loadingscreens.css';
 
 function cleanText(text) {
 	text = text.trim();
-	// text = text.toLowerCase();
+	text = text.toLowerCase();
 	text = text.replace(/[^a-z0-9\s]/, '')
 	return text;
 }
@@ -24,7 +24,8 @@ function createLoadingScreensQuery(vars) {
 		query += ` WHERE ${conditions.join(" AND ")}`;
 	}
 
-	query += ` LIMIT 100`;
+	query += ` ORDER BY creation_date`;
+	query += ` LIMIT 102`;
 	return query;
 }
 
@@ -34,7 +35,8 @@ class ResponsesPage extends Component {
 		this.state = {
 			text: "",
 			hero: null,
-			loadingscreens: []
+			loadingscreens: [],
+			selectedscreen: null
 		};
 		this.timer_id = null;
 
@@ -73,6 +75,9 @@ class ResponsesPage extends Component {
 		clearTimeout(this.timer_id);
 		this.timer_id = setTimeout(() => self.updateScreens(), 300);
 	}
+	selectScreen(screen) {
+		this.setState({ selectedscreen: screen })
+	}
 	render() {
 		return (
 			<div>
@@ -96,11 +101,18 @@ class ResponsesPage extends Component {
 				</form>
 				<div id="screensbox">
 					{this.state.loadingscreens.map(screen => (
-						<span key={screen.id}>
+						<span key={screen.id} onClick={() => this.selectScreen(screen)}>
 							<img src={dotabase.vpk_path + screen.thumbnail} />
 						</span>
 					))}
 				</div>
+				{
+					this.state.selectedscreen ? (
+						<span id="selectedscreen" onClick={() => this.selectScreen(null)}>
+							<img src={dotabase.vpk_path + this.state.selectedscreen.image} />
+						</span>
+					) : null
+				}
 			</div>
 		);
 	}

@@ -6,6 +6,7 @@ import LoadingScreensPage from './components/pages/LoadingScreensPage.jsx';
 import Header from './components/Header.jsx';
 
 import './styles/base.css';
+import 'react-select/dist/react-select.css';
 
 class App extends Component {
 	render() {
