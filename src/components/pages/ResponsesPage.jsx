@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Select from 'react-select';
 import VoiceSelect from '../VoiceSelect.jsx';
 import dotabase from '../../Dotabase.js';
 import Response from '../Response.jsx';
@@ -22,8 +23,17 @@ function createResponseQuery(vars) {
 	if (vars.voice != null) {
 		conditions.push(`voice_id == ${vars.voice}`);
 	}
+	if (vars.criteria != null) {
+		conditions.push(`(criteria LIKE '${vars.criteria}%' OR criteria LIKE '%|${vars.criteria}%')`);
+	}
 	query += ` WHERE ${conditions.join(" AND ")}`;
 
+	if (vars.text != "") {
+		query += ` ORDER BY LENGTH(text)`;
+	}
+	else {
+		query += ` ORDER BY LENGTH(text) DESC`;
+	}
 	query += ` LIMIT 50`;
 	return query;
 }
@@ -34,6 +44,8 @@ class ResponsesPage extends Component {
 		this.state = {
 			text: "",
 			voice: null,
+			criteria: null,
+			criteria_options: null,
 			responses: []
 		};
 		this.timer_id = null;
@@ -45,6 +57,15 @@ class ResponsesPage extends Component {
 	}
 	componentDidMount() {
 		this.updateResponses();
+		const self = this;
+		dotabase.query("SELECT * FROM criteria WHERE matchkey = 'Concept'").then(response => {
+			self.setState({ criteria_options: 
+				response.rows.map(crit => ({
+					value: crit.name,
+					label: crit.pretty
+				}))
+			});
+		});
 	}
 	handleChange(key, value) {
 		this.setState({[key]: value});
@@ -92,6 +113,13 @@ class ResponsesPage extends Component {
 							name="voice"
 							value={this.state.voice}
 							onChange={this.handleChange} />
+						<Select
+							name="criteria"
+							placeholder="Select a criteria..."
+							value={this.state.criteria}
+							onChange={(value) => this.handleChange("criteria", value && value.value)}
+							options={this.state.criteria_options || []}
+						/>
 					</fieldset>
 				</form>
 				<div>
