@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import convert from 'color-convert';
 import HeroSelect from '../HeroSelect.jsx';
+import ColorSelect from '../ColorSelect.jsx';
 import LoadingScreen from '../LoadingScreen.jsx';
 import dotabase from '../../Dotabase.js';
 import '../../styles/loadingscreens.css';
@@ -25,17 +27,31 @@ function createLoadingScreensQuery(vars) {
 		query += ` WHERE ${conditions.join(" AND ")}`;
 	}
 
-	query += ` ORDER BY creation_date`;
+	if (vars.color != null) {
+		var hsv = convert.hex.hsv(vars.color);
+		console.log(hsv);
+		var hue = hsv[0] * (256.0 / 360.0);
+		var sat = hsv[1] * (256.0 / 100.0);
+		var val = hsv[2] * (256.0 / 100.0);
+		if (sat < 20)
+			query += ` ORDER BY (ABS(value - ${val}) + saturation)`;
+		else
+			query += ` ORDER BY ABS(hue - ${hue})`;
+	}
+	else {
+		query += ` ORDER BY creation_date`;
+	}
 	query += ` LIMIT 102`;
 	return query;
 }
 
-class ResponsesPage extends Component {
+class LoadingScreensPage extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			text: "",
 			hero: null,
+			color: null,
 			loadingscreens: [],
 			selected_screen: null,
 			selected_screen_index: null
@@ -114,6 +130,10 @@ class ResponsesPage extends Component {
 							name="hero"
 							value={this.state.hero}
 							onChange={this.handleChange} />
+						<ColorSelect
+							name="color"
+							value={this.state.color}
+							onChange={this.handleChange} />
 					</fieldset>
 				</form>
 				<div id="screensbox">
@@ -148,4 +168,4 @@ class ResponsesPage extends Component {
 	}
 }
 
-export default ResponsesPage;
+export default LoadingScreensPage;

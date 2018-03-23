@@ -10,6 +10,7 @@
   "author": "Malcolm Diller",
   "license": "ISC",
   "dependencies": {
+    "color-convert": "^1.9.1",
     "copy-webpack-plugin": "^4.4.1",
     "css-loader": "^0.28.10",
     "json-loader": "^0.5.7",

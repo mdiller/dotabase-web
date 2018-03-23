@@ -27,7 +27,7 @@ class HeroSelect extends Component {
 		});
 	}
 	get name() {
-		return this.props.name || "hero"
+		return this.props.name || "hero";
 	}
 	handleChange(value) {
 		this.props.onChange(this.name, value && value.value);
