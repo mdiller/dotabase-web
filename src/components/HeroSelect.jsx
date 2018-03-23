@@ -12,16 +12,21 @@ function sortHeroes(heroes) {
 class HeroSelect extends Component {
 	constructor(props){
 		super(props);
+		this.state = {
+			options: null
+		};
 		this.handleChange = this.handleChange.bind(this)
+		this.getPropsValue = this.getPropsValue.bind(this)
 	}
 	componentDidMount() {
 		const self = this;
 		dotabase.query("SELECT * FROM heroes").then(response => {
 			self.setState({ options: 
-				sortHeroes(response.rows).map(voice => ({
-					value: parseInt(voice.id),
-					label: voice.localized_name,
-					icon: dotabase.vpk_path + voice.icon
+				sortHeroes(response.rows).map(hero => ({
+					id: parseInt(hero.id),
+					value: hero.aliases,
+					label: hero.localized_name,
+					icon: dotabase.vpk_path + hero.icon
 				}))
 			});
 		});
@@ -29,15 +34,20 @@ class HeroSelect extends Component {
 	get name() {
 		return this.props.name || "hero";
 	}
+	getPropsValue() {
+		if (this.props.value == null || !this.state.options)
+			return null;
+		return this.state.options.find(op => op.id == this.props.value).value
+	}
 	handleChange(value) {
-		this.props.onChange(this.name, value && value.value);
+		this.props.onChange(this.name, value && value.id);
 	}
 	render() {
 		return (
 			<Select
 				name={this.name}
 				placeholder="Select a hero..."
-				value={this.props.value}
+				value={this.getPropsValue()}
 				onChange={this.handleChange}
 				optionComponent={SelectIconOption}
 				valueComponent={SelectIconValue}

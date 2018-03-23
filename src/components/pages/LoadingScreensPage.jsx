@@ -6,12 +6,20 @@ import LoadingScreen from '../LoadingScreen.jsx';
 import dotabase from '../../Dotabase.js';
 import '../../styles/loadingscreens.css';
 
-
 function cleanText(text) {
 	text = text.trim();
 	text = text.toLowerCase();
 	text = text.replace(/[^a-z0-9\s]/, '')
 	return text;
+}
+
+function createHeroIdWhereClause(hero_id) {
+	var parts = [];
+	parts.push(`hero_ids LIKE '${hero_id}'`)
+	parts.push(`hero_ids LIKE '${hero_id}|%'`)
+	parts.push(`hero_ids LIKE '%|${hero_id}'`)
+	parts.push(`hero_ids LIKE '%|${hero_id}|%'`)
+	return `(${parts.join(" OR ")})`;
 }
 
 function createLoadingScreensQuery(vars) {
@@ -21,7 +29,7 @@ function createLoadingScreensQuery(vars) {
 		conditions.push(`name like '%${cleanText(vars.text)}%'`);
 	}
 	if (vars.hero != null) {
-		conditions.push(`hero_id == ${vars.hero}`);
+		conditions.push(createHeroIdWhereClause(vars.hero));
 	}
 	if (conditions.length > 0){
 		query += ` WHERE ${conditions.join(" AND ")}`;
@@ -38,8 +46,11 @@ function createLoadingScreensQuery(vars) {
 		else
 			query += ` ORDER BY ABS(hue - ${hue})`;
 	}
+	else if (vars.hero != null) {
+		query += ` ORDER BY LENGTH(hero_ids), category`
+	}
 	else {
-		query += ` ORDER BY creation_date`;
+		query += ` ORDER BY creation_date DESC`;
 	}
 	query += ` LIMIT 102`;
 	return query;
@@ -96,7 +107,6 @@ class LoadingScreensPage extends Component {
 	updateScreens() {
 		const self = this;
 		dotabase.query(createLoadingScreensQuery(this.state)).then(response => {
-			console.log(response.query);
 			self.setState({ loadingscreens: response.rows })
 		})
 	}
