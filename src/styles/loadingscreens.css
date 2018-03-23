@@ -42,6 +42,13 @@
 	opacity: 1.0;
 }
 
+#selectedscreen h2 {
+	font-size: 32px;
+	text-align: center;
+	text-shadow: 0 0 2px black, 0 0 5px white;
+	color: black;
+}
+
 #arrowright {
 	right: 25px;
 	top: 50%;

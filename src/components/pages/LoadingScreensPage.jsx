@@ -146,6 +146,7 @@ class LoadingScreensPage extends Component {
 				{
 					this.state.selected_screen ? (
 						<span id="selectedscreen">
+							<h2>{this.state.selected_screen.name}</h2>
 							<LoadingScreen screen={this.state.selected_screen} />
 							{this.previousScreen ? (
 								<svg id="arrowleft" viewBox="0 0 1000 1000" onClick={() => this.selectScreen(this.previousScreen)}>
