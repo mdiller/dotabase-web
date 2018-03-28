@@ -3,7 +3,7 @@ import Select from 'react-select';
 import VoiceSelect from '../VoiceSelect.jsx';
 import dotabase from '../../Dotabase.js';
 import Response from '../Response.jsx';
-import '../../styles/responses.css';
+import '../../styles/responses.scss';
 
 
 function cleanText(text) {

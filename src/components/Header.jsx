@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import '../styles/header.css';
+import '../styles/header.scss';
 
 const navbar_pages = [
 	{

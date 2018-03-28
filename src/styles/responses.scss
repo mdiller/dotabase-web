@@ -12,33 +12,33 @@ div.soundtitle {
 	height: 32px;
 	line-height: 24px;
 	padding: 4px;
-}
 
-div.soundtitle > span {
-	vertical-align: top;
-	display: inline-block;
-	display: -moz-inline-stack;
-	font-size: 17.5px;
-	position: relative;
-}
+	> span {
+		vertical-align: top;
+		display: inline-block;
+		display: -moz-inline-stack;
+		font-size: 17.5px;
+		position: relative;
+	}
 
-div.soundtitle > span > img {
-	margin: 0 5px;
-}
+	> span > img {
+		margin: 0 5px;
+	}
 
-div.soundtitle > span > img,
-div.soundtitle svg
-{
-	width: 24px;
-	height: 24px;
+	svg,
+	> span > img
+	{
+		width: 24px;
+		height: 24px;
+	}
 }
 
 .speaker {
 	position: relative;
-}
 
-.speaker * {
-	user-select: none;
+	* {
+		user-select: none;
+	}
 }
 
 .link-button {
@@ -46,23 +46,21 @@ div.soundtitle svg
 	height: 32px;
 	width: 32px;
 	transition: all 0.5s ease;
-}
 
-.link-button:hover {
-	transform: rotate(360deg) scale(1.1);
-}
+	&:hover {
+		transform: rotate(360deg) scale(1.1);
+	}
 
-.link-button > img {
-	display: flex;
-	height: 100%;
-	width: 100%;
+	> img {
+		display: flex;
+		height: 100%;
+		width: 100%;
+	}
 }
 
 img {
 	vertical-align: middle;
 }
-
-
 
 .link-menu-list {
 	position: absolute;
@@ -70,6 +68,10 @@ img {
 	transform: translate(-100%, -50%);
 	display: flex;
 	pointer-events: none;
+
+	a {
+		margin-right: 10px;
+	}
 }
 
 span:hover > .link-menu-list {
@@ -77,17 +79,13 @@ span:hover > .link-menu-list {
 	pointer-events: all;
 }
 
-span:not(:hover) > .link-menu-list > *:last-child {
-	margin-right: 0;
-}
-
 span:not(:hover) > .link-menu-list > * {
 	width: 0;
 	height: 0;
 	transform: rotate(180deg) scale(0.0);
 	opacity: 0.0;
-}
 
-.link-menu-list a {
-	margin-right: 10px;
+	&:last-child {
+		margin-right: 0;
+	}
 }

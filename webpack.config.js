@@ -25,6 +25,14 @@ module.exports = function(env) {
 						{ loader: "style-loader" },
 						{ loader: "css-loader" }
 					]
+				},
+				{
+					test: /\.scss$/,
+					use: [
+						{ loader: "style-loader" }, 
+						{ loader: "css-loader" }, 
+						{ loader: "sass-loader" }
+					]
 				}
 			]
 		},

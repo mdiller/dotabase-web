@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import VoiceSelect from '../VoiceSelect.jsx';
 import dotabase from '../../Dotabase.js';
 import LoadingScreen from '../LoadingScreen.jsx';
-import '../../styles/homepage.css';
+import '../../styles/homepage.scss';
 
 class HomePage extends Component {
 	constructor(props) {

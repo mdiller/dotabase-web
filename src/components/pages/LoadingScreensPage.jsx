@@ -4,7 +4,7 @@ import HeroSelect from '../HeroSelect.jsx';
 import ColorSelect from '../ColorSelect.jsx';
 import LoadingScreen from '../LoadingScreen.jsx';
 import dotabase from '../../Dotabase.js';
-import '../../styles/loadingscreens.css';
+import '../../styles/loadingscreens.scss';
 
 function cleanText(text) {
 	text = text.trim();

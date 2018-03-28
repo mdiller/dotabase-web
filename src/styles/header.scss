@@ -24,17 +24,18 @@
 	transform: translate(-50%, -150%);
 	animation: icongo 0.5s ease-out 1s 1 normal forwards;
 	transition: filter 0.5s;
-}
 
-stop {
-	transition: 0.5s ease;
-}
+	&:hover #grad stop:first-child {
+		stop-color: #c1300c;
+	}
 
-#logo:hover #grad stop:first-child {
-	stop-color: #c1300c;
-}
-#logo:hover #grad stop:last-child {
-	stop-color: #ff2528;
+	&:hover #grad stop:last-child {
+		stop-color: #ff2528;
+	}
+
+	stop {
+		transition: 0.5s ease;
+	}
 }
 
 #trap1 {
@@ -70,35 +71,35 @@ stop {
 	left: 50%;
 	padding-left: 84px;
 	height: 100%;
-}
 
-#navbar span {
-	position: relative;
-	display: inline-block;
-	height: 100%;
-	min-width: 150px;
-	box-shadow: inset 0 0 10px 2px #000000;
-}
+	span {
+		position: relative;
+		display: inline-block;
+		height: 100%;
+		min-width: 150px;
+		box-shadow: inset 0 0 10px 2px #000000;
 
-#navbar span a {
-	position: relative;
-	width: 100%;
-	height: 100%;
-	line-height: 50px;
-	display: block;
-	transition: 0.5s;
-	z-index: 0;
-}
+		a {
+			position: relative;
+			width: 100%;
+			height: 100%;
+			line-height: 50px;
+			display: block;
+			transition: 0.5s;
+			z-index: 0;
+		}
 
-#navbar a.active {
-	z-index: 1;
-	box-shadow: 
-		inset 0 0 10px 5px rgba(32, 229, 229, 70%);
-}
+		a.active {
+			z-index: 1;
+			box-shadow: 
+				inset 0 0 10px 5px rgba(32, 229, 229, 70%);
+		}
 
-#navbar a:hover {
-	z-index: 1;
-	box-shadow: 
-		inset 0 0 20px 5px rgba(32, 229, 229, 70%),
-		0 0 5px 2px rgba(32, 229, 229, 70%);
+		a:hover {
+			z-index: 1;
+			box-shadow: 
+				inset 0 0 20px 5px rgba(32, 229, 229, 70%),
+				0 0 5px 2px rgba(32, 229, 229, 70%);
+		}
+	}
 }
