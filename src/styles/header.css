@@ -1,9 +1,11 @@
 #header {
+	position: relative;
 	height: 50px;
 	background: linear-gradient(to top, #2d2b2e, #232123)
 }
 
 #logobox {
+	z-index: 2;
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -53,4 +55,50 @@ stop {
 @keyframes icongo {
 	from { transform: translate(-50%, -150%); }
 	to { transform: translate(-50%, -50%); }
+}
+
+#header a {
+	text-align: center;
+	text-decoration: none;
+	outline: 0;
+	font-weight: bold;
+	color: #dddddd;
+}
+
+#navbar {
+	position: absolute;
+	left: 50%;
+	padding-left: 84px;
+	height: 100%;
+}
+
+#navbar span {
+	position: relative;
+	display: inline-block;
+	height: 100%;
+	min-width: 150px;
+	box-shadow: inset 0 0 10px 2px #000000;
+}
+
+#navbar span a {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	line-height: 50px;
+	display: block;
+	transition: 0.5s;
+	z-index: 0;
+}
+
+#navbar a.active {
+	z-index: 1;
+	box-shadow: 
+		inset 0 0 10px 5px rgba(32, 229, 229, 70%);
+}
+
+#navbar a:hover {
+	z-index: 1;
+	box-shadow: 
+		inset 0 0 20px 5px rgba(32, 229, 229, 70%),
+		0 0 5px 2px rgba(32, 229, 229, 70%);
 }

@@ -1,11 +1,31 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import '../styles/header.css';
+
+const navbar_pages = [
+	{
+		link: "/responses",
+		label: "Voice Lines"
+	},
+	{
+		link: "/loadingscreens",
+		label: "Loading Screens"
+	}
+];
 
 class Header extends Component {
 	render() {
 		return (
 			<div id="header">
+				<div id="navbar">
+					{navbar_pages.map(page => (
+						<span>
+							<NavLink to={page.link} activeClassName="active">
+								{page.label}
+							</NavLink>
+						</span>
+					))}
+				</div>
 				<div id="logobox">
 					<svg xmlns="http://www.w3.org/2000/svg" width="195" height="68" viewBox="0 0 174 61">
 						<path
