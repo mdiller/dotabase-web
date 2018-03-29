@@ -13,7 +13,7 @@ class HomePage extends Component {
 	}
 	componentDidMount() {
 		const self = this;
-		dotabase.query("SELECT * FROM loadingscreens ORDER BY RANDOM() LIMIT 1").then(response => {
+		dotabase.query("SELECT * FROM loadingscreens WHERE hero_ids IS NOT NULL ORDER BY RANDOM() LIMIT 1").then(response => {
 			self.setState({ loadingscreen: response.rows[0] });
 		});
 	}
