@@ -62,7 +62,7 @@ class Response extends Component {
 					</span>
 					<span>
 						<img src={dotabase.vpk_path + response.voice_icon} />
-						{response.name}
+						{response.pretty_criteria.split("|")[0]}
 					</span>
 				</div>
 				<div>

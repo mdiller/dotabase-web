@@ -32,7 +32,7 @@ function createResponseQuery(vars) {
 		query += ` ORDER BY LENGTH(text)`;
 	}
 	else {
-		query += ` ORDER BY LENGTH(text) DESC`;
+		query += ` ORDER BY RANDOM()`;
 	}
 	query += ` LIMIT 50`;
 	return query;
