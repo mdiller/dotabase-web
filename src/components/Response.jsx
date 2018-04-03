@@ -9,6 +9,15 @@ soundManager.setup({
 var pause_path = "M0,0 L33.33,0 33.33,100 0,100  M66.66,0 L100,0 100,100 66.66,100";
 var play_path =  "M50,25 L100,50 100,50 50,75 M0,0 L50,25 50,75 0,100";
 
+var lengthLimit = 30;
+const criteriaTitle = (response) => {
+	var crits = response.pretty_criteria.split("|");
+	var title = crits[0];
+	if (title.length > lengthLimit)
+		title = title.substring(0, lengthLimit - 3) + "...";
+	return title;
+}
+
 class Response extends Component {
 	constructor(props) {
 		super(props);
@@ -62,7 +71,7 @@ class Response extends Component {
 					</span>
 					<span>
 						<img src={dotabase.vpk_path + response.voice_icon} />
-						{response.pretty_criteria.split("|")[0]}
+						{criteriaTitle(response)}
 					</span>
 				</div>
 				<div>
