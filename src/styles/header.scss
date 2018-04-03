@@ -80,19 +80,23 @@
 		box-shadow: inset 0 0 10px 2px #000000;
 
 		a {
+			box-sizing: border-box;
 			position: relative;
 			width: 100%;
 			height: 100%;
 			line-height: 50px;
 			display: block;
-			transition: 0.5s;
+			transition: z-index 0.5s, box-shadow 0.5s, background-size 0.5s;
+			background: radial-gradient(at bottom, rgb(32, 229, 229) 0%, transparent 75%);
+			background-position: center bottom;
+			background-repeat: no-repeat;
+			background-size: 0% 0%;
 			z-index: 0;
 		}
 
 		a.active {
-			z-index: 1;
-			box-shadow: 
-				inset 0 0 10px 5px rgba(32, 229, 229, 70%);
+			background-size: 100% 40%;
+			border-bottom: #c6ffff solid 3px;
 		}
 
 		a:hover {
