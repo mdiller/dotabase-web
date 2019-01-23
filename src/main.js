@@ -9,8 +9,14 @@ Vue.config.productionTip = false;
 const router = new VueRouter({
 	mode: 'history',
 	routes: [
-		{ path: '/', component: HomePage },
-		{ path: '/responses', component: ResponsesPage }
+		{
+			path: '/', 
+			component: HomePage 
+		},
+		{
+			path: '/responses', 
+			component: ResponsesPage 
+		}
 	]
 })
 
