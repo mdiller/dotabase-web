@@ -1,0 +1,5 @@
+notes.md
+dotabase.db
+node_modules/
+build/
+.htaccess

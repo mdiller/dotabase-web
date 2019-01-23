@@ -9,7 +9,7 @@ if(isset($_GET["q"])) {
 	$query = $_GET["q"];
 }
 else{
-	$query = "SELECT name FROM heroes";
+	$query = "SELECT * FROM heroes";
 }
 
 $database = new PDO("sqlite:dotabase.db");
