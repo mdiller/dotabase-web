@@ -2,23 +2,33 @@
 	<div class="hello">
 		<div id="form">
 			<h1>Example Title</h1>
-			<input type="checkbox" id="alphaBack" v-model="showAlphaBack">
-			<label for="alphaBack">Checkbox</label>
+			<img :src="screenUrl">
 		</div>
 	</div>
 </template>
 
 <script>
+import dotabase from "../dotabase.js";
 
 export default {
 	name: 'HomePage',
 	data() {
 		return {
-			showAlphaBack: false
+			showAlphaBack: false,
+			loadingscreen: null
+		}
+	},
+	computed: {
+		screenUrl() {
+			return this.loadingscreen ? `${dotabase.vpk_path}${this.loadingscreen.thumbnail}` : "";
 		}
 	},
 	created() {
-		
+		const self = this;
+		dotabase.query("SELECT * FROM loadingscreens WHERE hero_ids IS NOT NULL ORDER BY RANDOM() LIMIT 1").then(response => {
+			self.loadingscreen = response.rows[0];
+			console.log("done");
+		});
 	}
 }
 </script>
