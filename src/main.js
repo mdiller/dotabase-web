@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import '@dillerm/pretty-controls';
+import '@dillerm/pretty-controls/dist/pretty-controls.css';
 import App from './App.vue';
 import ResponsesPage from './components/ResponsesPage.vue';
 import HomePage from './components/HomePage.vue';

@@ -8,6 +8,7 @@
 		"lint": "vue-cli-service lint"
 	},
 	"dependencies": {
+		"@dillerm/pretty-controls": "^0.1.1",
 		"vue": "^2.5.17",
 		"vue-router": "^3.0.2"
 	},
