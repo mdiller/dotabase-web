@@ -89,11 +89,12 @@ export default {
 #header {
 	position: relative;
 	height: 50px;
-	background: linear-gradient(to top, #2d2b2e, #232123)
+	background: linear-gradient(to top, #2d2b2e, #232123);
+	z-index: 2;
 }
 
 #logobox {
-	z-index: 2;
+	z-index: 3;
 	position: absolute;
 	top: 0;
 	left: 50%;
@@ -182,19 +183,18 @@ export default {
 			background-position: center bottom;
 			background-repeat: no-repeat;
 			background-size: 0% 0%;
+			background-opacity: 0%;
 			z-index: 0;
 		}
 
 		a.router-link-active {
-			background-size: 100% 40%;
+			background-size: 100% 20%;
 			border-bottom: #c6ffff solid 3px;
 		}
 
 		a:hover {
 			z-index: 1;
-			box-shadow: 
-				inset 0 0 20px 5px rgba(32, 229, 229, 70%),
-				0 0 5px 2px rgba(32, 229, 229, 70%);
+			background-size: 100% 40%;
 		}
 	}
 }

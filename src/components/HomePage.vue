@@ -1,9 +1,13 @@
 <template>
 	<div class="page">
 		<div id="maintitle">
-			<h1>Example Title</h1>
+			<h1>Dotabase</h1>
 		</div>
-		<LoadingScreen :screen.sync="loadingscreen"></LoadingScreen>
+		<v-img
+			class="loadingscreen-box"
+			:src="vpkpath(loadingscreen.image)"
+			:lazy-src="vpkpath(loadingscreen.thumbnail)">
+		</v-img>
 	</div>
 </template>
 
@@ -16,6 +20,11 @@ export default {
 	data() {
 		return {
 			loadingscreen: null
+		}
+	},
+	methods: {
+		vpkpath(path) {
+			return dotabase.vpk_path + path;
 		}
 	},
 	created() {
@@ -34,6 +43,10 @@ export default {
 <style lang="scss">
 #maintitle {
 	text-align: center;
+	position: fixed;
+	top: 100px;
+	width: 100%;
+	z-index: 3;
 
 	h1 {
 		font-family: "Arial Black", Gadget, sans-serif;
@@ -50,12 +63,12 @@ export default {
 	}
 }
 
-.loadingscreen-box img {
+.loadingscreen-box {
 	position: fixed;
 	top: 0;
 	width: 100%;
 	height: 100%;
-	z-index: -1;
+	z-index: 1;
 	animation: fadein 3s ease-out;
 }
 
@@ -65,7 +78,7 @@ export default {
 }
 
 @media (orientation:portrait) {
-	.loadingscreen-box img {
+	.loadingscreen-box {
 		width: auto !important;
 		height: 100%;
 		margin: auto;

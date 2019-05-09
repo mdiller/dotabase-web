@@ -1,10 +1,12 @@
 import Vue from 'vue';
+import Vuetify from 'vuetify';
 import VueRouter from 'vue-router';
-import '@dillerm/pretty-controls';
-import '@dillerm/pretty-controls/dist/pretty-controls.css';
+import '@mdi/font/css/materialdesignicons.css'
+import 'vuetify/dist/vuetify.min.css'
 import App from './App.vue';
 import ResponsesPage from './components/ResponsesPage.vue';
 import HomePage from './components/HomePage.vue';
+import LoadingScreensPage from './components/LoadingScreensPage.vue';
 
 Vue.config.productionTip = false;
 
@@ -18,11 +20,18 @@ const router = new VueRouter({
 		{
 			path: '/responses', 
 			component: ResponsesPage 
+		},
+		{
+			path: '/loadingscreens', 
+			component: LoadingScreensPage 
 		}
 	]
 })
 
 Vue.use(VueRouter)
+Vue.use(Vuetify, {
+	iconfont: "mdi"
+})
 
 new Vue({
 	router,
