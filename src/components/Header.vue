@@ -1,7 +1,7 @@
 <template>
 	<div id="header">
 		<div id="navbar" :class="{ expanded: expanded }">
-			<span v-for="page in pages">
+			<span v-for="page in pages" :key="page.link">
 				<router-link :to="page.link">
 					{{page.label}}
 				</router-link>
@@ -59,9 +59,6 @@
 </template>
 
 <script>
-import dotabase from "../dotabase.js";
-import LoadingScreen from "./LoadingScreen.vue";
-
 
 const navbar_pages = [
 	{

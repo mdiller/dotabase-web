@@ -2,7 +2,9 @@
 	<div id="app">
 		<v-app dark dense>
 			<Header></Header>
-			<router-view></router-view>
+			<div id="pagecontent">
+				<router-view></router-view>
+			</div>
 		</v-app>
 	</div>
 </template>
