@@ -9,6 +9,7 @@
 				:items="items">
 				<template v-slot:items="props">
 					<td 
+						:key="column.value"
 						v-for="column in columns"
 						v-html="localize_value(props.item, column)">
 					</td>
@@ -122,6 +123,9 @@ export default {
 	methods: {
 		vpkpath(path) {
 			return dotabase.vpk_path + path;
+		},
+		localize_value(item, column) {
+			return "func" in column ? column.func(item) : item[column.value];
 		}
 	},
 	// computed: {
@@ -137,11 +141,6 @@ export default {
 	// 		}).filter(h => h.value != "json_data")
 	// 	}
 	// },
-	methods: {
-		localize_value(item, column) {
-			return "func" in column ? column.func(item) : item[column.value];
-		}
-	},
 	created() {
 		const self = this;
 		dotabase.query("SELECT * FROM heroes").then(response => {
@@ -151,18 +150,21 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
-.v-table__overflow {
-	max-height: 800px;
-	overflow-y: auto;
-}
-#contentbox td,
-#contentbox th {
-	padding: 0px 16px;
-}
+.page /deep/ #contentbox {
+	max-height: calc(100vh - 50px - 50px);
 
-#contentbox {
+	& > div {
+		max-height: inherit;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.v-table__overflow {
+		overflow-y: auto;
+	}
+
 	td:first-child div {
 		line-height: 24px;
 		height: 24px;
@@ -173,6 +175,11 @@ export default {
 			position: absolute;
 			left: 0;
 		}
+	}
+
+	td,
+	th {
+		padding: 0px 16px;
 	}
 
 	td img {
