@@ -1,5 +1,6 @@
 // const apiLocation = ".";
-const apiLocation = "http://localhost:82";
+// const apiLocation = "http://localhost:82";
+const apiLocation = "http://newdotabase.dillerm.io";
 
 class Dotabase {
 	constructor() {

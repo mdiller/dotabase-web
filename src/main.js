@@ -7,6 +7,7 @@ import App from './App.vue';
 import ResponsesPage from './components/ResponsesPage.vue';
 import HomePage from './components/HomePage.vue';
 import LoadingScreensPage from './components/LoadingScreensPage.vue';
+import ExplorerPage from './components/ExplorerPage.vue';
 
 Vue.config.productionTip = false;
 
@@ -24,6 +25,10 @@ const router = new VueRouter({
 		{
 			path: '/loadingscreens', 
 			component: LoadingScreensPage 
+		},
+		{
+			path: '/explorer', 
+			component: ExplorerPage 
 		}
 	]
 })

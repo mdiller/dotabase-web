@@ -4,6 +4,7 @@
 			<h1>Dotabase</h1>
 		</div>
 		<v-img
+			v-if="loadingscreen"
 			class="loadingscreen-box"
 			:src="vpkpath(loadingscreen.image)"
 			:lazy-src="vpkpath(loadingscreen.thumbnail)">

@@ -71,6 +71,10 @@ const navbar_pages = [
 	{
 		link: "/loadingscreens",
 		label: "Loading Screens"
+	},
+	{
+		link: "/explorer",
+		label: "Explorer"
 	}
 ];
 
