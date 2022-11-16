@@ -1,13 +1,13 @@
 class Dotabase {
 	constructor() {
-		this.vpk_path = "http://dotabase.dillerm.io/dota-vpk";
+		this.vpk_path = "https://dotabase.dillerm.io/vpk";
 	}
 
 	// Executes a query and converts the result to json
 	query(query) {
 		console.log(query);
 		query = encodeURIComponent(query);
-		return fetch(`./dotabase.php?q=${query}`).then(response => {
+		return fetch(`https://dotabase.dillerm.io/api/sql?q=${query}`).then(response => {
 			return response.json();
 		}).catch(error => {
 			console.error(error);
