@@ -106,8 +106,8 @@ class LoadingScreensPage extends Component {
 	}
 	updateScreens() {
 		const self = this;
-		dotabase.query(createLoadingScreensQuery(this.state)).then(response => {
-			self.setState({ loadingscreens: response.rows })
+		dotabase.query(createLoadingScreensQuery(this.state)).then(rows => {
+			self.setState({ loadingscreens: rows })
 		})
 	}
 	startDelayedUpdate() {

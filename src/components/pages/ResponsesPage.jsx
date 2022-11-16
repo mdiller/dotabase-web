@@ -58,9 +58,9 @@ class ResponsesPage extends Component {
 	componentDidMount() {
 		this.updateResponses();
 		const self = this;
-		dotabase.query("SELECT * FROM criteria WHERE matchkey = 'Concept'").then(response => {
+		dotabase.query("SELECT * FROM criteria WHERE matchkey = 'Concept'").then(rows => {
 			self.setState({ criteria_options: 
-				response.rows.map(crit => ({
+				rows.map(crit => ({
 					value: crit.name,
 					label: crit.pretty
 				}))
@@ -84,9 +84,9 @@ class ResponsesPage extends Component {
 	}
 	updateResponses() {
 		const self = this;
-		dotabase.query(createResponseQuery(this.state)).then(response => {
-			console.log(response.query);
-			self.setState({ responses: response.rows })
+		dotabase.query(createResponseQuery(this.state)).then(rows => {
+			// console.log(response.query);
+			self.setState({ responses: rows })
 		})
 	}
 	startDelayedUpdate() {
